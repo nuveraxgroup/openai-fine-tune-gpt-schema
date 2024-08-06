@@ -11,6 +11,7 @@
       "type": "array",
       "items": {
         "type": "object",
+        "required": ["role"],
         "properties": {
           "role": {
             "description": "The role of the messages author.",
@@ -83,10 +84,18 @@
               "properties": {
                 "role": { "const": "assistant" },
                 "function_call": { "type": "object"  }
-              }
+              },
+              "required": ["function_call"]
             },
-            "then": { "required": [ "role", "function_call" ] },
-            "else": { "required": [ "role", "content" ] }
+            "then": {
+              "anyOf": [
+                { "required": ["content"] },
+                { "not": { "required": ["content"] } }
+              ]
+            },
+            "else": {
+              "required": ["content"]
+            }
           }
         ]
       },
