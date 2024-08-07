@@ -29,4 +29,5 @@ export type FunctionModel = {
 export type Gtp305And4oSchema = {
     messages?: Message[];
     functions?: FunctionModel[];
+    [name: string]: any;
 }
