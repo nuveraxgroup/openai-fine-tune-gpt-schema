@@ -77,7 +77,7 @@
                 "role": { "const": "function" }
               }
             },
-            "then": { "required": [ "role", "content", "name" ] }
+            "then": { "required": [ "content", "name" ] }
           },
           {
             "if": {
@@ -115,6 +115,8 @@
       "description": "A list of function definition.",
       "type": "array",
       "deprecated": true,
+      "minItems": 1,
+      "uniqueItems": true,
       "items": {
         "type": "object",
         "required": [ "name", "description", "parameters" ],
