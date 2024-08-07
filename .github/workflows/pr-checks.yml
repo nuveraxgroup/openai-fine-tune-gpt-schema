@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd project
-          npm ci
+          npm install
 
       - name: Run tests
         run: npm run test
