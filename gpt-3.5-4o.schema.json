@@ -91,6 +91,20 @@
                 { "required": ["function_call"] }
               ]
             }
+          },
+          {
+            "if": {
+              "properties": {
+                "role": { "anyOf": [ { "const": "system" }, { "const": "user" } ] }
+              }
+            },
+            "then": {
+              "properties": {
+                "function_call": {
+                  "type": "null"
+                }
+              }
+            }
           }
         ]
       },
