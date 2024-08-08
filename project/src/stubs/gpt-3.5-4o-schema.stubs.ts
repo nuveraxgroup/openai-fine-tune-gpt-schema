@@ -53,6 +53,14 @@ export const ASSISTANT_WITH_FUNC_CALL_AND_CONTENT: Gtp305And4oSchema = {
   ]
 }
 
+export const ASSISTANT_WITH_FUNC_CALL_WITH_EMPTY_PROPERTIES: Gtp305And4oSchema = {
+  messages: [
+    DEFAULT_SYSTEM_MESSAGE,
+    DEFAULT_USER_MESSAGE,
+    { role: 'assistant', function_call: { name: '', arguments: '    ' } }
+  ]
+}
+
 export const ASSISTANT_MISSING_CONTENT_MSG: Gtp305And4oSchema = {
   messages: [
     DEFAULT_SYSTEM_MESSAGE,
@@ -75,6 +83,7 @@ export const FUNCTION_MISSING_CONTENT: Gtp305And4oSchema = {
   messages: [
     DEFAULT_SYSTEM_MESSAGE,
     DEFAULT_USER_MESSAGE,
+    DEFAULT_ASSISTANT_MESSAGE,
     { role: 'function', name: 'my_func' }
   ]
 }
@@ -83,6 +92,7 @@ export const FUNCTION_MISSING_NAME: Gtp305And4oSchema = {
   messages: [
     DEFAULT_SYSTEM_MESSAGE,
     DEFAULT_USER_MESSAGE,
+    DEFAULT_ASSISTANT_MESSAGE,
     { role: 'function', content: 'A function example message' }
   ]
 }
@@ -91,6 +101,7 @@ export const FUNCTION_MISSING_NAME_AND_CONTENT: Gtp305And4oSchema = {
   messages: [
     DEFAULT_SYSTEM_MESSAGE,
     DEFAULT_USER_MESSAGE,
+    DEFAULT_ASSISTANT_MESSAGE,
     { role: 'function' }
   ]
 }
@@ -158,4 +169,40 @@ export const EXTRA_PROPERTY: Gtp305And4oSchema = {
     }
   ],
   newProperty: "My new property"
+}
+
+export const EXTRA_MESSAGE_PROPERTY: Gtp305And4oSchema = {
+  messages: [
+    DEFAULT_SYSTEM_MESSAGE,
+    DEFAULT_USER_MESSAGE,
+    DEFAULT_ASSISTANT_MESSAGE,
+    DEFAULT_FUNCTION_MESSAGE,
+    { role: 'assistant', content: 'A assistant example message 2', newProperty: "My new property" }
+  ]
+}
+
+export const MESSAGES_WITH_EMPTY_CONTENTS: Gtp305And4oSchema = {
+  messages: [
+    { role: 'system', content: '       ' },
+    { role: 'user', content: '       ' },
+    { role: 'assistant', content: '       '},
+    { role: 'function', name: 'my_func', content: ' '},
+    { role: 'assistant', content: ''},
+  ]
+}
+
+export const FUNCTIONS_WITH_EMPTY_PROPERTIES: Gtp305And4oSchema = {
+  messages: [
+    DEFAULT_SYSTEM_MESSAGE,
+    DEFAULT_USER_MESSAGE,
+    DEFAULT_ASSISTANT_CONTENT_FUNC_CALL_MESSAGE
+  ],
+  functions: [ {
+    name: '',
+    description: "  ",
+    parameters: {
+      type: "object",
+      properties: { message: { type: "string" } },
+      required: ["message"] }
+  } ]
 }

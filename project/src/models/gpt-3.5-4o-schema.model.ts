@@ -12,6 +12,7 @@ export type Message = {
     name?: string;
     function_call?: FunctionCall;
     weight?: number;
+    [name: string]: any;
 }
 
 export type Parameter = {
