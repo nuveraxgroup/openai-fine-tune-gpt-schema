@@ -1,4 +1,4 @@
-import Ajv from 'ajv/dist/2020'
+import Ajv from 'ajv/dist/2019'
 import { GPT_305_AND_4O_SCHEMA } from "../json-schema/schema";
 import { EMPTY_OBJECT } from "../stubs";
 import {
@@ -18,7 +18,7 @@ import {
     SIMPLE_VALID_MESSAGE
 } from '../stubs/gpt-3.5-4o-schema.stubs';
 
-const ajv = new Ajv({strict:false});
+const ajv = new Ajv();
 const validate = ajv.compile(GPT_305_AND_4O_SCHEMA);
 
 describe('Gpt 3.5 and 4o schema tests', () => {

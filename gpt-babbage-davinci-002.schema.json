@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://github.com/nuveraxgroup/openai-fine-tune-gpt-schema/blob/main/gpt-babbage-davinci-002.schema.json",
   "title": "Fine-tune Babbage and Davinci sample schema",
   "description": "JSON Lines sample dataset schema validator",
