@@ -82,19 +82,14 @@
           {
             "if": {
               "properties": {
-                "role": { "const": "assistant" },
-                "function_call": { "type": "object"  }
-              },
-              "required": ["function_call"]
+                "role": { "const": "assistant" }
+              }
             },
             "then": {
               "anyOf": [
                 { "required": ["content"] },
-                { "not": { "required": ["content"] } }
+                { "required": ["function_call"] }
               ]
-            },
-            "else": {
-              "required": ["content"]
             }
           }
         ]
