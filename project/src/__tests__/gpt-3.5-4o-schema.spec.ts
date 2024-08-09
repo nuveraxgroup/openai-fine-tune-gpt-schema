@@ -1,6 +1,6 @@
 import Ajv from 'ajv/dist/2019'
-import { GPT_305_AND_4O_SCHEMA } from "../json-schema/schema";
-import { EMPTY_OBJECT } from "../stubs";
+import { GPT_305_AND_4O_SCHEMA } from '../json-schema/schema';
+import { EMPTY_OBJECT } from '../stubs';
 import {
     ASSISTANT_MESSAGES_WITH_WEIGHTS,
     ASSISTANT_MISSING_CONTENT_MSG,
