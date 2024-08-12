@@ -1,5 +1,6 @@
 import Ajv from 'ajv/dist/2019'
-import { GPT_305_AND_4O_SCHEMA } from '../json-schema/schema';
+import Ajv07 from 'ajv'
+import { GPT_305_AND_4O_SCHEMA, GPT_305_AND_4O_DRAFT_07_SCHEMA } from '../json-schema/schema';
 import { EMPTY_OBJECT } from '../stubs';
 import {
     ASSISTANT_MESSAGES_WITH_WEIGHTS,
@@ -24,9 +25,12 @@ import {
 } from '../stubs/gpt-3.5-4o-schema.stubs';
 
 const ajv = new Ajv({ allErrors: true, strict: false });
-const validate = ajv.compile(GPT_305_AND_4O_SCHEMA);
+const ajv07 = new Ajv07({ allErrors: true, strict: false });
 
-describe('Gpt 3.5 and 4o schema tests', () => {
+describe.each(['draft2019', 'draft07'])('Gpt 3.5 and 4o schema %s tests', (version ) => {
+    const validate = version === 'draft2019' ? ajv.compile(GPT_305_AND_4O_SCHEMA) :
+      ajv07.compile(GPT_305_AND_4O_DRAFT_07_SCHEMA);
+
     it('Valid simple messages', () => {
         const valid = validate(SIMPLE_VALID_MESSAGE);
         expect(validate.errors).toBe(null);
@@ -312,7 +316,6 @@ describe('Gpt 3.5 and 4o schema tests', () => {
     it('Validate blank `functions` -> `name` and `description`', () => {
         const valid = validate(FUNCTIONS_WITH_EMPTY_PROPERTIES);
         const errors = validate.errors;
-        console.log(errors)
 
         expect(errors.length).toBe(2);
         expect(errors[0].instancePath).toBe('/functions/0/name');
